@@ -1,0 +1,757 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Module 5: Show empathy · Cultivate Trust</title>
+<style>
+:root{
+  --paper:#f4ede0;
+  --paper2:#ebe2d1;
+  --ink:#1a1814;
+  --muted:#5d554a;
+  --rule:#d2c5aa;
+  --accent:#9c3b2b;
+  --accent2:#2f4b3f;
+  --soft:#ead1c6;
+  --white:#fffaf1;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family: Georgia, "Iowan Old Style", serif;
+  font-size:19px;
+  line-height:1.58;
+}
+.progress-wrap{position:fixed;top:0;left:0;right:0;height:4px;z-index:50;background:transparent}
+.progress{height:100%;width:0;background:var(--accent)}
+.cover{
+  min-height:100vh;
+  display:grid;
+  grid-template-rows:auto 1fr auto;
+}
+.top{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  padding:28px 46px;
+  font-family:Arial,sans-serif;
+  font-size:11px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+.brand{font-weight:700;color:var(--ink)}
+.hero{
+  background:var(--accent);
+  color:var(--paper);
+  padding:80px 48px 96px;
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:36px;
+  align-items:end;
+  position:relative;
+  overflow:hidden;
+}
+.hero:after{
+  content:"";
+  position:absolute;
+  right:52px;
+  top:52px;
+  width:96px;
+  height:96px;
+  border:2px solid rgba(244,237,224,.72);
+  border-radius:50%;
+  box-shadow:28px 24px 0 -16px rgba(244,237,224,.34),-22px 28px 0 -20px rgba(244,237,224,.45);
+}
+.eyebrow{
+  display:inline-block;
+  font-family:Arial,sans-serif;
+  font-weight:700;
+  font-size:11px;
+  letter-spacing:.19em;
+  text-transform:uppercase;
+  background:rgba(244,237,224,.18);
+  padding:8px 14px;
+  margin-bottom:30px;
+}
+h1{
+  margin:0;
+  font-size:clamp(56px,9vw,118px);
+  line-height:.92;
+  letter-spacing:-.04em;
+  font-weight:500;
+}
+h1 em{font-weight:400}
+.num{
+  font-size:clamp(58px,8vw,104px);
+  line-height:1;
+  text-align:right;
+}
+.num small{
+  display:block;
+  margin-top:8px;
+  font-family:Arial,sans-serif;
+  font-size:10px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  opacity:.72;
+}
+.cover-bottom{
+  background:var(--paper2);
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:28px;
+  padding:34px 48px;
+}
+.label{
+  font-family:Arial,sans-serif;
+  font-size:10px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--muted);
+  font-weight:700;
+  margin-bottom:8px;
+}
+.value{font-size:17px;line-height:1.38;font-weight:600}
+nav{
+  position:sticky;
+  top:4px;
+  z-index:20;
+  background:rgba(244,237,224,.96);
+  border-bottom:1px solid var(--rule);
+  padding:10px 22px;
+  overflow:auto;
+  white-space:nowrap;
+}
+nav a{
+  font-family:Arial,sans-serif;
+  font-size:13px;
+  display:inline-block;
+  color:var(--ink);
+  text-decoration:none;
+  padding:8px 10px;
+  border-radius:999px;
+}
+nav a:hover{background:var(--paper2)}
+main{max-width:760px;margin:0 auto;padding:80px 30px 100px}
+section{padding:34px 0 46px;border-bottom:1px solid var(--rule)}
+.mark{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-bottom:22px;
+  font-family:Arial,sans-serif;
+  font-size:11px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--accent);
+  font-weight:700;
+}
+.dot{
+  width:30px;height:30px;
+  border-radius:50%;
+  background:var(--accent);
+  color:var(--paper);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+.line{height:1px;background:var(--rule);flex:1}
+h2{
+  margin:0 0 24px;
+  font-size:clamp(34px,5vw,52px);
+  line-height:1.05;
+  letter-spacing:-.03em;
+  font-weight:500;
+}
+h2 em{color:var(--accent);font-weight:400}
+h3{
+  font-family:Arial,sans-serif;
+  font-size:13px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  margin:34px 0 12px;
+}
+p{margin:0 0 1.25em}
+.lede{font-size:24px;line-height:1.43}
+.card{
+  background:var(--paper2);
+  border:1px solid var(--rule);
+  padding:28px 30px;
+  margin:30px 0;
+}
+.dark{
+  background:var(--ink);
+  color:var(--paper);
+  border-color:var(--ink);
+}
+.dark .label{color:#e2a06c}
+.pull{
+  margin:44px -30px;
+  padding:32px 44px;
+  background:var(--paper2);
+  border-left:5px solid var(--accent);
+  font-size:27px;
+  line-height:1.3;
+  font-style:italic;
+}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+ul.clean{list-style:none;margin:0;padding:0}
+ul.clean li{
+  padding:10px 0;
+  border-top:1px dotted var(--rule);
+  font-family:Arial,sans-serif;
+  font-size:15px;
+}
+ul.clean li:first-child{border-top:0}
+.dark ul.clean li{border-color:rgba(244,237,224,.24)}
+.choice,.chip{
+  border:1px solid var(--ink);
+  background:var(--white);
+  color:var(--ink);
+  padding:12px 14px;
+  margin:6px 6px 6px 0;
+  border-radius:999px;
+  font-family:Arial,sans-serif;
+  font-size:14px;
+  cursor:pointer;
+}
+.choice:hover,.chip:hover{background:var(--ink);color:var(--paper)}
+.choice.selected.good,.chip.selected.good{background:var(--accent2);border-color:var(--accent2);color:var(--paper)}
+.choice.selected.bad,.chip.selected.bad{background:var(--accent);border-color:var(--accent);color:var(--paper);text-decoration:line-through}
+.feedback{
+  min-height:22px;
+  margin-top:12px;
+  font-family:Arial,sans-serif;
+  font-size:14px;
+  color:var(--muted);
+}
+textarea,input{
+  width:100%;
+  background:var(--white);
+  border:1px solid var(--ink);
+  padding:14px 16px;
+  font:18px Georgia,serif;
+  line-height:1.45;
+  margin:8px 0 16px;
+}
+textarea{min-height:105px;resize:vertical}
+button.primary{
+  background:var(--ink);
+  color:var(--paper);
+  border:1px solid var(--ink);
+  padding:12px 18px;
+  font-family:Arial,sans-serif;
+  font-weight:700;
+  cursor:pointer;
+}
+button.primary:hover{background:var(--accent);border-color:var(--accent)}
+.receipt{
+  display:none;
+  margin-top:18px;
+  background:var(--white);
+  border:2px solid var(--accent2);
+  padding:18px 20px;
+  font-family:Arial,sans-serif;
+  font-size:14px;
+}
+.receipt.show{display:block}
+.footer{
+  background:var(--ink);
+  color:var(--paper);
+  padding:70px 30px;
+}
+.footer-inner{max-width:760px;margin:0 auto}
+.footer h2{color:var(--paper)}
+@media(max-width:720px){
+  body{font-size:17px}
+  .top{padding:18px 22px}
+  .hero{grid-template-columns:1fr;padding:54px 24px 68px}
+  .num{text-align:left}
+  .cover-bottom,.grid2{grid-template-columns:1fr}
+  .cover-bottom{padding:24px}
+  main{padding:48px 24px 80px}
+  .pull{margin:34px -24px;padding:24px;font-size:23px}
+}
+</style>
+<style>
+  /* Module-page-specific overrides: no full-page hero/footer, just the section. */
+  body { padding: 0; }
+  main.module {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 48px 30px 80px;
+  }
+  .module-eyebrow {
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: .19em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .complete-bar {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .complete-bar .hint {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  /* Section borders inside an iframe page look heavy; soften them. */
+  section { border-bottom: 0; padding: 0; }
+  @media (max-width: 720px) {
+    main.module { padding: 32px 22px 64px; }
+  }
+</style>
+</head>
+<body>
+<main class="module">
+  <div class="module-eyebrow">Cultivate Trust · Module 5 of 7</div>
+  <section>
+    
+  <h2>Understand before <em>responding.</em></h2>
+  <p class="lede">Empathy is not agreement, rescue, or lowering the standard. It is understanding what someone is carrying and responding in a way that preserves dignity, clarity, and forward movement.</p>
+
+  <div class="card dark">
+    <div class="label">Active listening script</div>
+    <ul class="clean">
+      <li>It sounds like you’re feeling ___ because ___.</li>
+      <li>I want to make sure I’m understanding the situation.</li>
+      <li>What would be most helpful from me right now?</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="label">Rewrite exercise</div>
+    <p><strong>Original:</strong> “We need this done today.”</p>
+    <p>Rewrite this so it still communicates urgency, but does not ignore the person or the pressure they may be under.</p>
+    <textarea></textarea>
+    <button class="primary complete">Mark rewrite complete</button>
+    <div class="receipt">Rewrite complete.</div>
+  </div>
+  </section>
+  <div class="complete-bar">
+    <button class="primary" id="finishBtn">Mark module complete</button>
+    <span class="hint">Your work above is saved locally as a self-check. Manager review applies only where noted.</span>
+  </div>
+</main>
+<script>
+(function(){
+  const N = 5;
+
+  function postComplete(detail){
+    try {
+      window.parent.postMessage(
+        Object.assign({ type: 'omada-trust' + N + '-complete' }, detail || {}),
+        '*'
+      );
+    } catch (e) {}
+  }
+
+  // Re-implement the original file's interactions, scoped to this page.
+
+  // Chip toggles (Module 1: trust-builder sort).
+  document.querySelectorAll('.chip').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.classList.toggle('selected');
+      const fb = document.getElementById('sortFeedback');
+      if (fb) {
+        const goodCount = document.querySelectorAll('.chip.good.selected').length;
+        fb.textContent = goodCount >= 3
+          ? 'Good. Trust grows when expectations, risk, ownership, and learning are made visible.'
+          : 'Look for behaviors that make clarity, ownership, and safety more visible.';
+      }
+    });
+  });
+
+  // Single-choice scenario groups.
+  document.querySelectorAll('[data-choice-group] .choice').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const group = btn.closest('[data-choice-group]');
+      group.querySelectorAll('.choice').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      const fb = group.querySelector('.feedback');
+      fb.textContent = btn.classList.contains('good')
+        ? 'Correct. Early communication gives others time to adjust and protects trust.'
+        : 'That may feel easier in the moment, but it usually creates surprise and weakens trust.';
+    });
+  });
+
+  // Inline "Mark complete" buttons inside cards (separate from module-finish).
+  document.querySelectorAll('.complete').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const receipt = btn.parentElement.querySelector('.receipt');
+      if (receipt) receipt.classList.add('show');
+      btn.textContent = 'Completed';
+      btn.disabled = true;
+    });
+  });
+
+  // Optional manager submission (Module 3 only — survives if absent).
+  const submissionForm = document.getElementById('submissionForm');
+  if (submissionForm) {
+    submissionForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const data = {};
+      submissionForm.querySelectorAll('textarea').forEach(t => data[t.name] = t.value);
+      try { localStorage.setItem('cultivateTrustModule' + N + 'Submission', JSON.stringify(data)); } catch (_) {}
+      const r = document.getElementById('submissionReceipt');
+      if (r) r.classList.add('show');
+      postComplete({
+        requiresManagerReview: true,
+        submission: data,
+        completedAt: new Date().toISOString()
+      });
+    });
+  }
+
+  // The big finish button reports module completion to the LMS shell.
+  const finishBtn = document.getElementById('finishBtn');
+  finishBtn.addEventListener('click', () => {
+    finishBtn.textContent = 'Module complete';
+    finishBtn.disabled = true;
+    postComplete({ completedAt: new Date().toISOString() });
+  });
+})();
+</script>
+<script data-pplx-inline-edit>
+(function () {
+  if (window === window.top) return;
+
+  const allowedParentOrigins = ["https://www.perplexity.ai","https://perplexity.ai","https://testing.perplexity.ai","https://staging.perplexity.ai","https://*.preview.i.perplexity.ai","http://localhost:3000","http://127.0.0.1:3000","http://localhost:5173","http://127.0.0.1:5173"];
+  const MAX_FONT_BYTES = 500 * 1024;
+  const MAX_TOTAL_FONT_BYTES = 2 * 1024 * 1024;
+  let scrollForwarding = false;
+  let scrollRaf = 0;
+  let trustedTopOrigin = null;
+
+  // Allow entries like "https://*.preview.i.perplexity.ai" — the wildcard
+  // matches a single DNS label (no dots), so "https://*.foo" cannot stretch
+  // across multiple labels.
+  function matchesAllowedOrigin(origin) {
+    if (!origin) return false;
+    for (const entry of allowedParentOrigins) {
+      if (!entry.includes("*")) {
+        if (entry === origin) return true;
+        continue;
+      }
+      const pattern = new RegExp(
+        "^" +
+          entry.replace(/[.+?^${}()|[\]\\]/g, "\\$&").replace(/\*/g, "[^.]+") +
+          "$",
+      );
+      if (pattern.test(origin)) return true;
+    }
+    return false;
+  }
+
+  // Trust decision: when the sender is same-origin-visible (event.origin is a
+  // real origin like https://www.perplexity.ai) we trust event.origin directly.
+  // When event.origin is "null" (opaque broker srcdoc), we fall back to the
+  // broker's stamped `parentOrigin` to identify the top window. The fallback
+  // is claim-only — we rely on the browser's native `targetOrigin` enforcement
+  // on the response path (see postToTrustedTop) to ensure replies can't be
+  // delivered to anyone but the actual top window of that claimed origin.
+  function getTrustedParentOrigin(event) {
+    const forwardedParentOrigin =
+      typeof event.data.parentOrigin === "string" ? event.data.parentOrigin : null;
+    const parentOrigin = event.origin === "null" ? forwardedParentOrigin : event.origin;
+    return matchesAllowedOrigin(parentOrigin) ? parentOrigin : null;
+  }
+
+  // All responses go to window.top with targetOrigin = the allowlisted origin.
+  // An attacker that iframes us inside their own null-origin broker can claim
+  // any parentOrigin they like, but the browser will drop the reply whenever
+  // the real top's origin doesn't match — so the screenshot never leaves.
+  function postToTrustedTop(message) {
+    if (!trustedTopOrigin) return;
+    try {
+      window.top.postMessage(message, trustedTopOrigin);
+    } catch (_error) {}
+  }
+
+  function inlineAll(original, clone) {
+    if (original.nodeType !== 1 || clone.nodeType !== 1) return;
+
+    try {
+      const computedStyle = getComputedStyle(original);
+      // cssText on a computed style is the serialized declaration in modern
+      // Chromium/Safari — a single read beats enumerating ~400 longhand
+      // properties. Firefox returns "" here, so we fall back on empty.
+      const serialized = computedStyle.cssText;
+      if (serialized) {
+        clone.style.cssText = serialized;
+      } else {
+        const parts = new Array(computedStyle.length);
+        for (let index = 0; index < computedStyle.length; index += 1) {
+          const property = computedStyle[index];
+          parts[index] = `${property}:${computedStyle.getPropertyValue(property)};`;
+        }
+        clone.style.cssText = parts.join("");
+      }
+    } catch (_error) {}
+
+    const originalChildren = original.children;
+    const clonedChildren = clone.children;
+    for (
+      let index = 0;
+      index < originalChildren.length && index < clonedChildren.length;
+      index += 1
+    ) {
+      inlineAll(originalChildren[index], clonedChildren[index]);
+    }
+  }
+
+  function extractFontUrl(srcValue) {
+    const matches = [
+      ...srcValue.matchAll(
+        /url\(["']?([^"')]+)["']?\)(?:\s*format\(["']?([^"')]+)["']?\))?/gi,
+      ),
+    ];
+    if (matches.length === 0) return null;
+    const woff2 = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff2"));
+    if (woff2) return woff2[1];
+    const woff = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff"));
+    if (woff) return woff[1];
+    return matches[0][1];
+  }
+
+  // Cache resolved font URL -> data URI across captures. Fonts on a page
+  // essentially never change, and a batch run emits multiple captures back to
+  // back — without this we'd refetch + re-base64 every time.
+  const fontDataUriCache = new Map();
+  const SRC_DECLARATION_RE = /src\s*:\s*[^;}]+/i;
+
+  async function fetchAsDataUri(url) {
+    if (fontDataUriCache.has(url)) return fontDataUriCache.get(url);
+    let dataUri = null;
+    try {
+      const response = await fetch(url, { mode: "cors", credentials: "omit" });
+      if (response.ok) {
+        const blob = await response.blob();
+        if (blob.size <= MAX_FONT_BYTES) {
+          dataUri = await new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onloadend = () =>
+              resolve(typeof reader.result === "string" ? reader.result : null);
+            reader.onerror = () => resolve(null);
+            reader.readAsDataURL(blob);
+          });
+        }
+      }
+    } catch (_error) {
+      dataUri = null;
+    }
+    fontDataUriCache.set(url, dataUri);
+    return dataUri;
+  }
+
+  function collectFontFaceRuleTexts() {
+    const rules = [];
+    for (const sheet of document.styleSheets) {
+      let cssRules;
+      try {
+        cssRules = sheet.cssRules;
+      } catch (_error) {
+        continue;
+      }
+      if (!cssRules) continue;
+      for (const rule of cssRules) {
+        const cssText = rule.cssText || "";
+        if (cssText.startsWith("@font-face")) rules.push(cssText);
+      }
+    }
+    return rules;
+  }
+
+  async function buildInlinedFontCss() {
+    const ruleTexts = collectFontFaceRuleTexts();
+    if (ruleTexts.length === 0) return null;
+
+    const resolved = ruleTexts.map((cssText) => {
+      if (!SRC_DECLARATION_RE.test(cssText)) return null;
+      const srcMatch = cssText.match(/src\s*:\s*([^;}]+)[;}]/i);
+      if (!srcMatch) return null;
+      const url = extractFontUrl(srcMatch[1]);
+      if (!url) return null;
+      try {
+        return { cssText, url: new URL(url, document.baseURI).href };
+      } catch (_error) {
+        return null;
+      }
+    });
+
+    const dataUris = await Promise.all(
+      resolved.map((entry) => (entry ? fetchAsDataUri(entry.url) : Promise.resolve(null))),
+    );
+
+    const inlined = [];
+    let totalBytes = 0;
+    for (let index = 0; index < resolved.length; index += 1) {
+      const entry = resolved[index];
+      const dataUri = dataUris[index];
+      if (!entry || !dataUri) continue;
+      const approxBytes = dataUri.length * 0.75;
+      if (totalBytes + approxBytes > MAX_TOTAL_FONT_BYTES) break;
+      totalBytes += approxBytes;
+      inlined.push(entry.cssText.replace(SRC_DECLARATION_RE, `src: url("${dataUri}")`));
+    }
+    return inlined.length > 0 ? inlined.join("\n") : null;
+  }
+
+  function stripExternal(clone) {
+    const images = clone.querySelectorAll("img");
+    for (let index = 0; index < images.length; index += 1) {
+      const src = images[index].getAttribute("src");
+      if (src && !src.startsWith("data:")) images[index].removeAttribute("src");
+    }
+
+    const elements = clone.querySelectorAll("*");
+    for (let index = 0; index < elements.length; index += 1) {
+      const style = elements[index].style.cssText;
+      if (style && style.includes("url(")) {
+        elements[index].style.cssText = style.replace(
+          /url\(["']?(?!data:)[^)"']*["']?\)/gi,
+          "none",
+        );
+      }
+    }
+  }
+
+  function emitScroll() {
+    scrollRaf = 0;
+    if (!scrollForwarding) return;
+    postToTrustedTop({
+      type: "INLINE_EDIT_SCROLL",
+      scrollX: window.scrollX,
+      scrollY: window.scrollY,
+    });
+  }
+
+  window.addEventListener(
+    "scroll",
+    function () {
+      if (!scrollForwarding || scrollRaf) return;
+      scrollRaf = requestAnimationFrame(emitScroll);
+    },
+    { passive: true, capture: true },
+  );
+
+  async function handleCaptureRequest(event) {
+    const requestId = event.data.requestId;
+    const scrollX = window.scrollX;
+    const scrollY = window.scrollY;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    function postResult(dataUrl) {
+      postToTrustedTop({
+        type: "INLINE_EDIT_SCREENSHOT_RESULT",
+        requestId,
+        dataUrl,
+        scrollX,
+        scrollY,
+      });
+    }
+
+    try {
+      // Wait for any pending web fonts to resolve so both inline metrics and
+      // the @font-face inlining below see the same loaded faces.
+      if (document.fonts && document.fonts.ready) {
+        try {
+          await document.fonts.ready;
+        } catch (_error) {}
+      }
+
+      const clone = document.documentElement.cloneNode(true);
+      inlineAll(document.documentElement, clone);
+
+      const removedNodes = clone.querySelectorAll("script,link[rel=\"stylesheet\"],style");
+      for (let index = 0; index < removedNodes.length; index += 1) {
+        removedNodes[index].remove();
+      }
+
+      stripExternal(clone);
+
+      // Re-embed web fonts as data-URI @font-face rules so the SVG rasterizer
+      // can resolve them — external font URLs aren't fetched during
+      // foreignObject rendering, which would otherwise force a fallback face
+      // and change text metrics.
+      const inlinedFontCss = await buildInlinedFontCss();
+      if (inlinedFontCss) {
+        const styleEl = document.createElement("style");
+        styleEl.textContent = inlinedFontCss;
+        const head = clone.querySelector("head");
+        if (head) head.appendChild(styleEl);
+        else clone.insertBefore(styleEl, clone.firstChild);
+      }
+
+      const html = new XMLSerializer().serializeToString(clone);
+      const svg =
+        `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">` +
+        '<foreignObject width="100%" height="100%">' +
+        `<div xmlns="http://www.w3.org/1999/xhtml" style="width:${width}px;height:${height}px;overflow:hidden">` +
+        `<div style="transform:translate(-${scrollX}px,-${scrollY}px);transform-origin:top left">` +
+        html +
+        "</div></div></foreignObject></svg>";
+      const svgUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+      const image = new Image();
+      image.onload = function () {
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        canvas.getContext("2d").drawImage(image, 0, 0);
+        postResult(canvas.toDataURL("image/png"));
+      };
+      image.onerror = function () {
+        postResult(null);
+      };
+      image.src = svgUrl;
+    } catch (_error) {
+      postResult(null);
+    }
+  }
+
+  window.addEventListener("message", function (event) {
+    if (!event.data) return;
+    // Only accept messages from the direct parent frame. Blocks sibling /
+    // unrelated-window postMessage senders that could otherwise reach us.
+    if (event.source !== window.parent) return;
+
+    const trustedParentOrigin = getTrustedParentOrigin(event);
+    if (!trustedParentOrigin) return;
+    trustedTopOrigin = trustedParentOrigin;
+
+    if (event.data.type === "INLINE_EDIT_SCROLL_START") {
+      scrollForwarding = true;
+      emitScroll();
+      return;
+    }
+
+    if (event.data.type === "INLINE_EDIT_SCROLL_STOP") {
+      scrollForwarding = false;
+      if (scrollRaf) cancelAnimationFrame(scrollRaf);
+      scrollRaf = 0;
+      return;
+    }
+
+    if (event.data.type !== "INLINE_EDIT_CAPTURE_REQUEST") return;
+
+    handleCaptureRequest(event);
+  });
+})();
+
+</script></body>
+</html>
